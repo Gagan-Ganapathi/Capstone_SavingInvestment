@@ -1,0 +1,8 @@
+<div class="d-flex">
+  <app-sidebar [isCollapsed]="isSidebarCollapsed"></app-sidebar>
+  <div class="main-content" [class.sidebar-collapsed]="isSidebarCollapsed">
+    <router-outlet></router-outlet>
+  </div>
+</div>
+
+<!-- <router-outlet /> -->

@@ -1,0 +1,72 @@
+.card {
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-bottom: 1rem;
+  }
+  
+  .table th, 
+  .table td {
+    vertical-align: middle;
+  }
+  
+  .btn-group {
+    display: flex;
+    gap: 5px;
+  }
+  
+  .form-group {
+    margin-bottom: 1rem;
+  }
+  
+  .total-income-card {
+    background-color: #f8f9fa;
+    border-left: 4px solid #28a745;
+  }
+  
+  .action-buttons {
+    display: flex;
+    gap: 10px;
+  }
+  
+  .table-responsive {
+    overflow-x: auto;
+  }
+  
+  .income-form {
+    background-color: white;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .form-buttons {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+  }
+  
+  .income-history {
+    margin-top: 2rem;
+  }
+  
+  .income-card {
+    transition: transform 0.2s ease;
+  }
+  
+  .income-card:hover {
+    transform: translateY(-2px);
+  }
+  
+  /* Custom utility classes */
+  .text-success {
+    color: #28a745;
+  }
+  
+  .bg-dark {
+    background-color: #343a40;
+  }
+  
+  .text-white {
+    color: white;
+  } 
+
+  

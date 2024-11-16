@@ -1,0 +1,98 @@
+<div class="container mt-4 fade-in">
+    <div class="card">
+      <div class="card-body">
+        <h2 class="card-title">Budget Management</h2>
+        
+        <form [formGroup]="budgetForm" (ngSubmit)="onSubmit()" class="slide-in">
+          <div class="row g-3">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="category" class="form-label">Category</label>
+                <select id="category" formControlName="category" class="form-select">
+                  <option value="">Select Category</option>
+                  <option *ngFor="let category of categories" [value]="category">
+                    {{category}}
+                  </option>
+                </select>
+                <div class="invalid-feedback" *ngIf="budgetForm.get('category')?.invalid && budgetForm.get('category')?.touched">
+                  Category is required
+                </div>
+              </div>
+            </div>
+            
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="amount" class="form-label">Amount</label>
+                <div class="input-group">
+                  <span class="input-group-text">$</span>
+                  <input type="number" id="amount" formControlName="amount" class="form-control">
+                </div>
+              </div>
+            </div>
+  
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="startDate" class="form-label">Start Date</label>
+                <input type="date" id="startDate" formControlName="startDate" class="form-control">
+              </div>
+            </div>
+  
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="endDate" class="form-label">End Date</label>
+                <input type="date" id="endDate" formControlName="endDate" class="form-control">
+              </div>
+            </div>
+  
+            <div class="col-md-6">
+              <div class="form-check mt-4">
+                <input type="checkbox" id="isRecurring" formControlName="isRecurring" class="form-check-input">
+                <label class="form-check-label" for="isRecurring">Recurring Budget</label>
+              </div>
+            </div>
+  
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="period" class="form-label">Period</label>
+                <select id="period" formControlName="period" class="form-select">
+                  <option *ngFor="let period of periods" [value]="period">{{period}}</option>
+                </select>
+              </div>
+            </div>
+          </div>
+  
+          <div class="mt-4">
+            <button type="submit" class="btn btn-primary" [disabled]="!budgetForm.valid">
+              Set Budget
+            </button>
+          </div>
+        </form>
+  
+        <div class="mt-5 fade-in">
+          <h3 class="section-title">Current Budgets</h3>
+          <div class="table-responsive">
+            <table class="table table-dark">
+              <thead>
+                <tr>
+                  <th>Category</th>
+                  <th>Amount</th>
+                  <th>Period</th>
+                  <th>Start Date</th>
+                  <th>End Date</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let budget of budgets" class="table-row-hover">
+                  <td>{{budget.category}}</td>
+                  <td>{{budget.amount | currency}}</td>
+                  <td>{{budget.period}}</td>
+                  <td>{{budget.startDate | date}}</td>
+                  <td>{{budget.endDate | date}}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

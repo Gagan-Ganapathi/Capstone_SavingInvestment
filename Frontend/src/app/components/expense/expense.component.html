@@ -1,0 +1,134 @@
+<div class="container-fluid mt-4 fade-in">
+    <div class="row mb-4">
+      <div class="col-12">
+        <h2 class="page-title">Expense Management Dashboard</h2>
+      </div>
+    </div>
+  
+    <div class="row">
+      <!-- Left Sidebar - Form Section -->
+      <div class="col-md-4">
+        <div class="card mb-4">
+          <div class="card-body">
+            <h3 class="section-title">New Expense</h3>
+            <form [formGroup]="expenseForm" (ngSubmit)="onSubmit()" class="slide-in">
+              <div class="form-group">
+                <label for="category" class="form-label">Category</label>
+                <select id="category" formControlName="category" class="form-select">
+                  <option value="">Select Category</option>
+                  <option *ngFor="let category of categories" [value]="category">
+                    {{category}}
+                  </option>
+                </select>
+              </div>
+  
+              <div class="form-group">
+                <label for="amount" class="form-label">Amount</label>
+                <div class="input-group">
+                  <span class="input-group-text">$</span>
+                  <input type="number" id="amount" formControlName="amount" class="form-control">
+                </div>
+              </div>
+  
+              <div class="form-group">
+                <label for="description" class="form-label">Description</label>
+                <input type="text" id="description" formControlName="description" class="form-control">
+              </div>
+  
+              <div class="form-group">
+                <label for="date" class="form-label">Date</label>
+                <input type="date" id="date" formControlName="date" class="form-control">
+              </div>
+  
+              <div class="form-group">
+                <label for="paymentMethod" class="form-label">Payment Method</label>
+                <select id="paymentMethod" formControlName="paymentMethod" class="form-select">
+                  <option value="">Select Payment Method</option>
+                  <option *ngFor="let method of paymentMethods" [value]="method">
+                    {{method}}
+                  </option>
+                </select>
+              </div>
+  
+              <button type="submit" class="btn btn-primary w-100" [disabled]="!expenseForm.valid">
+                Add Expense
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+  
+      <!-- Main Content Area -->
+      <div class="col-md-8">
+        <!-- Monthly Summary Section -->
+        <div class="card mb-4">
+          <div class="card-body">
+            <h3 class="section-title">Monthly Summary</h3>
+            <div class="row g-4">
+              <div class="col-md-6 col-xl-4" *ngFor="let summary of summaries">
+                <div class="summary-card">
+                  <div class="summary-header">
+                    <h5 class="category-title">{{summary.category}}</h5>
+                  </div>
+                  <div class="summary-content">
+                    <div class="summary-item">
+                      <span class="label">Total Spent:</span>
+                      <span class="value">{{summary.totalSpent | currency}}</span>
+                    </div>
+                    <div class="summary-item">
+                      <span class="label">Budget:</span>
+                      <span class="value">{{summary.budgetAmount | currency}}</span>
+                    </div>
+                    <div class="summary-item">
+                      <span class="label">Remaining:</span>
+                      <span class="value" [class.text-danger]="summary.remainingBudget < 0">
+                        {{summary.remainingBudget | currency}}
+                      </span>
+                    </div>
+                    <div class="progress">
+                      <div class="progress-bar" role="progressbar" 
+                           [style.width.%]="summary.spendingPercentage"
+                           [class.bg-success]="summary.spendingPercentage < 70"
+                           [class.bg-warning]="summary.spendingPercentage >= 70 && summary.spendingPercentage < 90"
+                           [class.bg-danger]="summary.spendingPercentage >= 90">
+                        {{summary.spendingPercentage}}%
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+  
+        <!-- Recent Expenses Section -->
+        <div class="card">
+          <div class="card-body">
+            <h3 class="section-title">Recent Expenses</h3>
+            <div class="table-responsive">
+              <table class="table table-dark">
+                <thead>
+                  <tr>
+                    <th>Date</th>
+                    <th>Category</th>
+                    <th>Description</th>
+                    <th>Amount</th>
+                    <th>Payment Method</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let expense of expenses" class="table-row-hover">
+                    <td>{{expense.date | date}}</td>
+                    <td>{{expense.category}}</td>
+                    <td>{{expense.description}}</td>
+                    <td>{{expense.amount | currency}}</td>
+                    <td>{{expense.paymentMethod}}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

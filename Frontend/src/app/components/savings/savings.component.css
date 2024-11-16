@@ -1,0 +1,33 @@
+.card {
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  margin-bottom: 20px;
+}
+
+.card-header {
+  font-weight: 500;
+}
+
+.stats-box {
+  padding: 15px;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+.stats-box h5 {
+  color: #495057;
+  margin-bottom: 10px;
+}
+
+.stats-box p {
+  font-size: 1.2rem;
+  font-weight: 500;
+  margin: 0;
+  color: #212529;
+}
+
+#investmentChart {
+  width: 100% !important;
+  height: 300px !important;
+}
