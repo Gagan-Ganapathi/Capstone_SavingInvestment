@@ -16,7 +16,7 @@ export class BudgetComponent implements OnInit {
   budgets: Budget[] = [];
   categories = ['Food', 'Transportation','Rent', 'Entertainment', 'Utilities', 'Others'];
   periods = ['Monthly', 'Quarterly', 'Yearly'];
-  userId = 'gagan'; // Replace with actual user ID from auth service
+  userId = localStorage.getItem('userid');
 
   constructor(
     private fb: FormBuilder,
@@ -37,10 +37,14 @@ export class BudgetComponent implements OnInit {
   }
 
   loadBudgets(): void {
+    if(this.userId){
     this.service.getUserBudgets(this.userId).subscribe(
       (budgets) => this.budgets = budgets,
       (error) => console.error('Error loading budgets:', error)
-    );
+    );}
+    else{
+      console.error('User ID not found');
+    }
   }
 
   onSubmit(): void {

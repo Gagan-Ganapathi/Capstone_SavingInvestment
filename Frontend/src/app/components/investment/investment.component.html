@@ -1,140 +1,143 @@
-<div class="container-fluid mt-4">
-  <!-- Transaction Summary Section -->
-  <div class="row mb-4">
-      <div class="col-12">
-          <div class="card">
-              <div class="card-header bg-primary text-white">
-                  Investment Summary
-              </div>
-              <div class="card-body">
-                  <div class="row">
-                      <div class="col-md-3 col-6 mb-3">
-                          <h6>Total Investments</h6>
-                          <p class="h4">{{transactionsSummary.totalInvestments | currency}}</p>
-                      </div>
-                      <div class="col-md-3 col-6 mb-3">
-                          <h6>Total Stocks</h6>
-                          <p class="h4">{{transactionsSummary.totalStocks | currency}}</p>
-                      </div>
-                      <div class="col-md-3 col-6 mb-3">
-                          <h6>Total Mutual Funds</h6>
-                          <p class="h4">{{transactionsSummary.totalMFs | currency}}</p>
-                      </div>
-                      <div class="col-md-3 col-6 mb-3">
-                          <h6>Total Property</h6>
-                          <p class="h4">{{transactionsSummary.totalProperty | currency}}</p>
-                      </div>
-                      <div class="col-md-3 col-6 mb-3">
-                        <h6>Total Crypto</h6>
-                        <p class="h4">{{transactionsSummary.totalCrypto | currency}}</p>
-                    </div>
-                  </div>
-              </div>
-          </div>
+<!-- investment.component.html -->
+<div class="dashboard-container">
+  <!-- Use [ngClass] binding to handle sidebar state -->
+  <div class="dark-dashboard" [ngClass]="{'sidebar-expanded': sidebarExpanded}">
+    <!-- Transaction Summary Section -->
+    <div class="summary-section animate-fade-in">
+      <h1 class="dashboard-title">Investment Dashboard</h1>
+      <div class="summary-grid">
+        <div class="summary-item animate-slide-up">
+          <h6>Total Investments</h6>
+          <p class="amount">{{transactionsSummary.totalInvestments | currency}}</p>
+          <div class="trend up">+5.2% ↑</div>
+        </div>
+        <div class="summary-item animate-slide-up">
+          <h6>Total Stocks</h6>
+          <p class="amount stock">{{transactionsSummary.totalStocks | currency}}</p>
+          <div class="trend up">+3.8% ↑</div>
+        </div>
+        <div class="summary-item animate-slide-up">
+          <h6>Total Mutual Funds</h6>
+          <p class="amount mutual">{{transactionsSummary.totalMFs | currency}}</p>
+          <div class="trend down">-1.2% ↓</div>
+        </div>
+        <div class="summary-item animate-slide-up">
+          <h6>Total Property</h6>
+          <p class="amount property">{{transactionsSummary.totalProperty | currency}}</p>
+          <div class="trend up">+2.5% ↑</div>
+        </div>
+        <div class="summary-item animate-slide-up">
+          <h6>Total Crypto</h6>
+          <p class="amount crypto">{{transactionsSummary.totalCrypto | currency}}</p>
+          <div class="trend down">-2.8% ↓</div>
+        </div>
       </div>
-  </div>
+    </div>
 
-  <!-- Rest of the existing template content -->
-  <!-- ... -->
-</div>
-
-
-<div class="container-fluid mt-4">
-  <div class="row">
-      <!-- Investment Accounts Section -->
-      <div class="col-md-6">
-          <div class="card">
-              <div class="card-header bg-primary text-white">
-                  Investment Accounts
-              </div>
-              <div class="card-body">
-                  <div class="table-responsive">
-                      <table class="table table-striped">
-                          <thead>
-                              <tr>
-                                  <th>Account ID</th>
-                                  <th>Balance</th>
-                                  <th>Created At</th>
-                              </tr>
-                          </thead>
-                          <tbody>
-                              <tr *ngFor="let account of investmentAccounts">
-                                  <td>{{account.id}}</td>
-                                  <td>{{account.balance | currency}}</td>
-                                  <td>{{account.createdAt | date}}</td>
-                              </tr>
-                          </tbody>
-                      </table>
-                  </div>
-              </div>
+    <!-- Main Content Grid -->
+    <div class="main-grid">
+      <!-- Left Column -->
+      <div class="left-column animate-fade-in">
+        <!-- Investment Accounts -->
+        <div class="content-card">
+          <div class="card-header">
+            <h3>Investment Accounts</h3>
+            <button class="header-action">View All</button>
           </div>
-      </div>
-
-      <!-- Investment Chart Section -->
-      <div class="col-md-6">
-          <div class="card">
-              <div class="card-header bg-success text-white">
-                  Investment Distribution
-              </div>
-              <div class="card-body">
-                  <canvas id="investmentChart"></canvas>
-              </div>
+          <div class="card-body">
+            <div class="table-responsive">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Account ID</th>
+                    <th>Balance</th>
+                    <th>Created At</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let account of investmentAccounts; let i = index" 
+                      class="animate-slide-right">
+                    <td><span class="account-id">{{account.id}}</span></td>
+                    <td><span class="balance">{{account.balance | currency}}</span></td>
+                    <td>{{account.createdAt | date}}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
           </div>
-      </div>
-  </div>
+        </div>
 
-  <!-- Add Investment Transaction Section -->
-  <div class="row mt-4">
-      <div class="col-md-6">
-          <div class="card">
-              <div class="card-header bg-info text-white">
-                  Add Investment
-              </div>
-              <div class="card-body">
-                  <form (ngSubmit)="createTransaction()" #transactionForm="ngForm">
-                      <div class="mb-3">
-                          <label class="form-label">Investment Type</label>
-                          <select class="form-select" [(ngModel)]="newTransaction.type" name="type">
-                              <option *ngFor="let type of investmentTypes" [value]="type">{{type}}</option>
-                          </select>
-                      </div>
-                      <div class="mb-3">
-                          <label class="form-label">Amount</label>
-                          <input type="number" class="form-control" [(ngModel)]="newTransaction.amount" name="amount" required>
-                      </div>
-                      <button type="submit" class="btn btn-info">Add Investment</button>
-                  </form>
-              </div>
+        <!-- Investment History -->
+        <div class="content-card">
+          <div class="card-header">
+            <h3>Recent Transactions</h3>
+            <button class="header-action">Export</button>
           </div>
+          <div class="card-body">
+            <div class="table-responsive">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Date</th>
+                    <th>Type</th>
+                    <th>Amount</th>
+                    <th>Status</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let transaction of transactions; let i = index">
+                    <td>{{transaction.transactionDate | date}}</td>
+                    <td><span class="badge" [ngClass]="transaction.type.toLowerCase()">{{transaction.type}}</span></td>
+                    <td>{{transaction.amount | currency}}</td>
+                    <td><span class="status completed">Completed</span></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
       </div>
 
-      <!-- Investment Transactions Section -->
-      <div class="col-md-6">
-          <div class="card">
-              <div class="card-header bg-warning text-dark">
-                  Investment History
-              </div>
-              <div class="card-body">
-                  <div class="table-responsive">
-                      <table class="table table-striped">
-                          <thead>
-                              <tr>
-                                  <th>Date</th>
-                                  <th>Type</th>
-                                  <th>Amount</th>
-                              </tr>
-                          </thead>
-                          <tbody>
-                              <tr *ngFor="let transaction of transactions">
-                                  <td>{{transaction.transactionDate | date}}</td>
-                                  <td>{{transaction.type}}</td>
-                                  <td>{{transaction.amount | currency}}</td>
-                              </tr>
-                          </tbody>
-                      </table>
-                  </div>
-              </div>
+      <!-- Right Column -->
+      <div class="right-column">
+        <!-- Chart Section -->
+        <div class="content-card">
+          <div class="card-header">
+            <h3>Portfolio Distribution</h3>
+            <div class="chart-period">
+              <button class="period-btn active">1M</button>
+              <button class="period-btn">3M</button>
+              <button class="period-btn">6M</button>
+              <button class="period-btn">1Y</button>
+            </div>
           </div>
+          <div class="card-body chart-container">
+            <canvas id="investmentChart"></canvas>
+          </div>
+        </div>
+
+        <!-- Add Investment Form -->
+        <div class="content-card">
+          <div class="card-header">
+            <h3>New Investment</h3>
+          </div>
+          <div class="card-body">
+            <form (ngSubmit)="createTransaction()" #transactionForm="ngForm">
+              <div class="form-group">
+                <label for="investmentType">Investment Type</label>
+                <select id="investmentType" [(ngModel)]="newTransaction.type" name="type" class="form-control">
+                  <option *ngFor="let type of investmentTypes" [value]="type">{{type}}</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="amount">Amount</label>
+                <input type="number" id="amount" class="form-control" [(ngModel)]="newTransaction.amount" name="amount" required>
+              </div>
+              <button type="submit" class="btn btn-glow">Add Investment</button>
+            </form>
+          </div>
+        </div>
       </div>
+    </div>
   </div>
 </div>

@@ -89,20 +89,25 @@ import { ToastrService } from 'ngx-toastr';
     styleUrls: ['./investment.component.css']
 })
 export class InvestmentComponent implements OnInit {
-    userId = 'sai'; // Replace with actual user ID
+    userId = localStorage.getItem('userid'); // Replace with actual user ID
     investmentAccounts: Account[] = [];
     transactions: Transaction[] = [];
     investmentTypes = INVESTMENT_TYPES;
     transactionsSummary: any = {};
     chart: any;
+    sidebarExpanded: boolean = true; // Default to expanded
+
+  // Method to toggle sidebar
+  toggleSidebar() {
+    this.sidebarExpanded = !this.sidebarExpanded;
+  }
 
     newTransaction = {
         type: 'Stocks',
         amount: 0
     };
 
-    constructor(
-      private accountService: AccountService,
+    constructor(private accountService: AccountService,
       private toastr: ToastrService
       ) { }
 
@@ -113,21 +118,34 @@ export class InvestmentComponent implements OnInit {
     }
 
     loadInvestmentAccounts(): void {
+        if(this.userId){
+
         this.accountService.getUserAccountsByType(this.userId, 'investment')
             .subscribe(accounts => this.investmentAccounts = accounts);
+        }
+        else{
+          console.log('User ID not found');
+        }
     }
 
     loadTransactions(): void {
+        if(this.userId){
         this.accountService.getTransactions(this.userId, 'investment')
             .subscribe(transactions => {
                 this.transactions = transactions;
                 this.updateChart();
             });
+        }
     }
 
     loadTransactionsSummary(): void {
+        if(this.userId){
+
         this.accountService.getTransactionsSummary(this.userId, 'investment')
-            .subscribe(summary => this.transactionsSummary = summary);
+            .subscribe(summary => {this.transactionsSummary = summary,
+            console.log(this.transactionsSummary);});
+        }
+
     }
 
     // createTransaction(): void {
@@ -154,6 +172,8 @@ export class InvestmentComponent implements OnInit {
     // }
 
     createTransaction(): void {
+        if(this.userId){
+
       this.accountService.createTransaction(
           this.userId,
           'investment',
@@ -164,18 +184,28 @@ export class InvestmentComponent implements OnInit {
               this.loadInvestmentAccounts();
               this.loadTransactions();
               this.loadTransactionsSummary();
-              this.newTransaction = {
-                  type: 'Stocks',
-                  amount: 0
-              };
+              
               this.toastr.success('Investment transaction completed successfully!', 'Investment Added');
+              alert(this.newTransaction.type +' Transaction completed successfully');
+              this.newTransaction = {
+                type: 'Stocks',
+                amount: 0
+            };
           },
           error: (error) => {
               console.error('Error creating transaction:', error);
               this.toastr.error('Failed to create investment transaction', 'Error');
+              alert('Failed to create transaction');
+
           }
       });
   }
+  else{
+    console.log('User ID not found');
+    alert('User ID not found');
+  }
+}
+
 
     updateChart(): void {
               const investmentData = INVESTMENT_TYPES.map(type => ({

@@ -33,37 +33,53 @@ export class IncomeComponent implements OnInit {
       amount: ['', [Validators.required, Validators.min(0)]],
       date: ['', Validators.required],
       source: ['', Validators.required],
-      description: ['']
+      description: ['',Validators.required]
     });
   }
 
   ngOnInit(): void {
+    
     this.loadIncomes();
   }
 
   loadIncomes(): void {
-    const userId = 'gagan'; // Replace with actual user ID
-    this.incomeService.getUserIncomes(userId).subscribe(
-      (incomes) => {
-        this.incomes = incomes;
-        this.loadMonthlyTotal();
-      },
-      (error) => console.error('Error loading incomes:', error)
-    );
+    const userId = localStorage.getItem('userid');
+    if (userId) {
+      // Proceed only if userId is not null
+      this.incomeService.getUserIncomes(userId).subscribe(
+        (incomes) => {
+          this.incomes = incomes;
+          this.loadMonthlyTotal();
+        },
+        (error) => console.error('Error loading incomes:', error)
+      );
+    } else {
+      console.error('User ID is not available in localStorage.');
+      // Handle the case when userId is null (e.g., redirect to login or show an error message)
+    }
   }
+  
 
   loadMonthlyTotal(): void {
-    const userId = 'gagan'; // Replace with actual user ID
-    this.incomeService.getMonthlyIncome(userId).subscribe(
+    const userId = localStorage.getItem('userid');
+    if (userId) {   
+       this.incomeService.getMonthlyIncome(userId).subscribe(
       (data) => this.totalMonthlyIncome = data.totalMonthlyIncome,
       (error) => console.error('Error loading monthly total:', error)
-    );
+    ); } 
+    else {
+      console.error('User ID is not available in localStorage.');
+      // Handle the case when userId is null (e.g., redirect to login or show an error message)
+    }
   }
 
   onSubmit(): void {
     if (this.incomeForm.valid) {
+      const userid = localStorage.getItem('userid');
+    if (userid) {   
+      
       const incomeData: IncomeDto = {
-        userId: 'gagan', // Replace with actual user ID
+        userId: userid, // Replace with actual user ID
         ...this.incomeForm.value
       };
 
@@ -78,6 +94,10 @@ export class IncomeComponent implements OnInit {
           (error) => console.error('Error creating income:', error)
         );
       }
+    } else {
+      console.error('User ID is not available in localStorage.');
+      // Handle the case when userId is null (e.g., redirect to login or show an error message)
+    }
     }
   }
 

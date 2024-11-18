@@ -32,10 +32,13 @@ export interface TransactionSummary {
     totalMFs: number;
     totalCash: number;
     totalProperty: number;
+    totalGold: number;
     totalEFs: number;
     totalCrypto: number;
     accountType: string;
 }
+
+
 
 export const SAVINGS_TYPES = ['Cash', 'Gold', 'Emergency Fund'] as const;
 export const INVESTMENT_TYPES = ['Stocks', 'Mutual funds', 'Property','Crypto'] as const;

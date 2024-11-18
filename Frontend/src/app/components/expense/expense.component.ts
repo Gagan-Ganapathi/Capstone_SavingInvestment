@@ -15,10 +15,10 @@ export class ExpenseComponent implements OnInit {
   expenseForm: FormGroup;
   expenses: Expense[] = [];
   summaries: ExpenseSummary[] = [];
-  categories = ['Food', 'Transportation', 'Entertainment', 'Utilities', 'Others'];
+  categories = ['Food', 'Transportation', 'Rent','Entertainment', 'Utilities', 'Others'];
   paymentMethods = ['Cash', 'Credit Card', 'Debit Card', 'UPI'];
-  userId = 'gagan'; // Replace with actual user ID from auth service
-
+  userId = localStorage.getItem('userid');
+ 
   constructor(
     private fb: FormBuilder,
     private service: ExpenseBudgetService
@@ -38,17 +38,27 @@ export class ExpenseComponent implements OnInit {
   }
 
   loadExpenses(): void {
+    if(this.userId){
     this.service.getUserExpenses(this.userId).subscribe(
       (expenses) => this.expenses = expenses,
       (error) => console.error('Error loading expenses:', error)
     );
   }
+  else{
+    console.log("User id not found");
+  }
+  }
 
   loadSummary(): void {
+    if(this.userId){
     this.service.getMonthlySummary(this.userId).subscribe(
       (summaries) => this.summaries = summaries,
       (error) => console.error('Error loading summary:', error)
     );
+    }
+    else{
+    console.log("User id not found");
+    }
   }
 
   onSubmit(): void {

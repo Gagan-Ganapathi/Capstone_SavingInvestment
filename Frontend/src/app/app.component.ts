@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
+import { AuthService } from './services/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -14,4 +15,16 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
 export class AppComponent {
   title = 'finance-tracker';
   isSidebarCollapsed = false;
+  constructor(private authService: AuthService) {}
+
+  // Getter to check authentication status
+  get isAuthenticated(): boolean {
+    //console.log(this.isAdmin);
+    //console.log(this.isAuthenticated);
+    return this.authService.getAuthStatus();
+
+  }
+  get isAdmin(): boolean {
+   return this.authService.getAdminStatus();
+  }
 }

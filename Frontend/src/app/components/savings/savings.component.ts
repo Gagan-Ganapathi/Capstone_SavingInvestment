@@ -100,7 +100,7 @@ import { ToastrService } from 'ngx-toastr';
     styleUrls: ['./savings.component.css']
 })
 export class SavingsComponent implements OnInit {
-    userId = 'sai'; // Replace with actual user ID
+    userId = localStorage.getItem('userid');
     savingsAccounts: Account[] = [];
     transactions: Transaction[] = [];
     savingsTypes = SAVINGS_TYPES;
@@ -130,23 +130,50 @@ export class SavingsComponent implements OnInit {
     }
 
     loadSavingsAccounts(): void {
+        if(this.userId){
         this.accountService.getUserAccountsByType(this.userId, 'savings')
-            .subscribe(accounts => this.savingsAccounts = accounts);
+            .subscribe(accounts =>{             
+            this.savingsAccounts = accounts;
+          console.log('response: ', this.savingsAccounts)});
+            } 
+            else{
+              this.toastr.error('User ID not found');
+            }
     }
 
+   
     loadTransactions(): void {
+        if(this.userId){
+
         this.accountService.getTransactions(this.userId, 'savings')
-            .subscribe(transactions => this.transactions = transactions);
+            .subscribe(transactions =>{            
+            this.transactions = transactions});
+        }
+        else{
+          this.toastr.error('User ID not found');
+        }
     }
 
     loadAccountsSummary(): void {
+        if(this.userId){
+
         this.accountService.getAccountsSummary(this.userId)
             .subscribe(summary => this.accountsSummary = summary);
+        }
+        else{
+          this.toastr.error('User ID not found');
+        }
     }
 
     loadTransactionsSummary(): void {
+        if(this.userId){
+
         this.accountService.getTransactionsSummary(this.userId, 'savings')
             .subscribe(summary => this.transactionsSummary = summary);
+        }
+        else{
+          this.toastr.error('User ID not found');
+        }
     }
 
     // createAccount(): void {
@@ -189,22 +216,32 @@ export class SavingsComponent implements OnInit {
     // }
     
     createAccount(): void {
+        if(this.userId){
+
       this.accountService.createAccount(this.userId, this.newAccount.accountType)
           .subscribe({
               next: () => {
                   this.loadSavingsAccounts();
                   this.loadAccountsSummary();
                   this.toastr.success('New savings account created successfully!', 'Account Created');
-                  
+                  alert(this.newAccount.accountType + ' created successfully');
+
               },
               error: (error) => {
-                  console.error('Error creating account:', error);
+                  console.error('Error creating account:',error);
                   this.toastr.error('Failed to create savings account', 'Error');
+                  alert('Account already exists');
               }
           });
+        }
+        else{
+          this.toastr.error('User ID not found');
+        }
   }
 
   createTransaction(): void {
+    if(this.userId){
+
       this.accountService.createTransaction(
           this.userId,
           'savings',
@@ -216,17 +253,25 @@ export class SavingsComponent implements OnInit {
               this.loadTransactions();
               this.loadAccountsSummary();
               this.loadTransactionsSummary();
-              this.newTransaction = {
-                  type: 'Cash',
-                  amount: 0
-              };
+             
               this.toastr.success('Savings transaction completed successfully!', 'Transaction Created');
-              alert("Transaction created successfully")
+              alert(this.newTransaction.type + ' Transaction created successfully');
+              this.newTransaction = {
+                type: 'Cash',
+                amount: 0
+            };
           },
           error: (error) => {
               console.error('Error creating transaction:', error);
               this.toastr.error('Failed to create transaction', 'Error');
+              alert('Failed to create transaction');
+
           }
       });
   }
+ else {
+    this.toastr.error('User ID not found');
+     }
+  }
+
 }

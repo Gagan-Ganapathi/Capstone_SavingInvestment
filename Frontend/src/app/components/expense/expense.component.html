@@ -86,13 +86,14 @@
                       </span>
                     </div>
                     <div class="progress">
-                      <div class="progress-bar" role="progressbar" 
-                           [style.width.%]="summary.spendingPercentage"
-                           [class.bg-success]="summary.spendingPercentage < 70"
-                           [class.bg-warning]="summary.spendingPercentage >= 70 && summary.spendingPercentage < 90"
-                           [class.bg-danger]="summary.spendingPercentage >= 90">
-                        {{summary.spendingPercentage}}%
-                      </div>
+                        <div class="progress-bar animated-progress" role="progressbar" 
+                             [style.width.%]="summary.spendingPercentage | number:'1.1-1'"
+                             [class.bg-success]="summary.spendingPercentage < 70"
+                             [class.bg-warning]="summary.spendingPercentage >= 70 && summary.spendingPercentage < 90"
+                             [class.bg-danger]="summary.spendingPercentage >= 90">
+                          {{summary.spendingPercentage | number:'1.1-1'}}%
+                        </div>
+                      
                     </div>
                   </div>
                 </div>

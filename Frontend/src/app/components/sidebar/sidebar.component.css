@@ -1,4 +1,4 @@
-.sidebar {
+/* .sidebar {
     background-color: #343a40;
     color: white;
     padding: 1rem;
@@ -33,5 +33,65 @@
   
   .nav-link i {
     font-size: 1.2rem;
+  }
+   */
+
+   .sidebar {
+    background-color: #343a40;
+    color: white;
+    padding: 1rem;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    transition: all 0.3s ease;
+  }
+  
+  .sidebar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+  }
+  
+  .nav-link {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 0.75rem 1rem;
+    color: rgba(255, 255, 255, 0.8);
+    text-decoration: none;
+    transition: all 0.3s ease;
+  }
+  
+  .nav-link:hover {
+    color: white;
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+  
+  .nav-link.active {
+    background-color: rgba(255, 255, 255, 0.2);
+    color: white;
+  }
+  
+  .nav-link i {
+    font-size: 1.2rem;
+  }
+  
+  .sidebar.collapsed {
+    width: 80px;
+  }
+  
+  .sidebar.collapsed .sidebar-header h4 {
+    display: none;
+  }
+  
+  .btn-outline-light:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+
+  .sidebar.collapsed .btn-outline-light {
+    width: 60px; /* Shrinks the button */
+    padding: 0.5rem; /* Adjust padding */
+    text-align: center; /* Center-align text */
   }
   

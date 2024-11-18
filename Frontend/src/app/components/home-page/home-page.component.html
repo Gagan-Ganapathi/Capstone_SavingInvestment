@@ -1,0 +1,123 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+  <div class="container-fluid">
+    <div class="auth-buttons me-3">
+      <button routerLink="/login" class="btn btn-outline-light me-2">Login</button>
+      <button routerLink="/register" class="btn btn-outline-light">Register</button>
+    </div>
+    
+    <a class="navbar-brand" href="#">FINWISE</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" 
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="#features">Features</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#flashcards">Learn</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
+<section class="hero-section" id="section1">
+  <div class="hero-text">
+    <h1>Financial Education Made Easy</h1>
+    <p>Learn, Track, and Grow Your Wealth</p>
+    <div class="hero-stats">
+      <div class="stat-item">
+        <span class="stat-number">100+</span>
+        <span class="stat-label">Financial Lessons</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-number">5000+</span>
+        <span class="stat-label">Practice Cards</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="flashcard-section" id="flashcards">
+  <h2 class="section-title">Learn Financial Concepts</h2>
+  <div class="flashcard-container">
+    <!-- Basic Investment Card -->
+    <div class="flashcard">
+      <div class="flashcard-inner">
+        <div class="flashcard-front">
+          <img src="investment.avif" alt="Investment Graph">
+          <h3>What is Compound Interest?</h3>
+        </div>
+        <div class="flashcard-back">
+          <p>Compound interest is when you earn interest on both your initial investment and previously earned interest.</p>
+          <div class="example">
+            Example: $1000 at 10% annually becomes $1100 after year 1, then earns interest on $1100 in year 2.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Budgeting Card -->
+    <div class="flashcard">
+      <div class="flashcard-inner">
+        <div class="flashcard-front">
+          <img src="budgetplanning.avif" alt="Budget Planning">
+          <h3>50/30/20 Rule</h3>
+        </div>
+        <div class="flashcard-back">
+          <p>A budgeting rule that suggests:</p>
+          <ul>
+            <li>50% for needs</li>
+            <li>30% for wants</li>
+            <li>20% for savings</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Investment Card -->
+    <div class="flashcard">
+      <div class="flashcard-inner">
+        <div class="flashcard-front">
+          <img src="stockmarket.avif" alt="Stock Market">
+          <h3>What is Diversification?</h3>
+        </div>
+        <div class="flashcard-back">
+          <p>Spreading investments across different assets to reduce risk.</p>
+          <div class="example">
+            Example: Mixing stocks, bonds, real estate, and cash.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="topics-grid">
+  <h2 class="section-title">Financial Topics</h2>
+  <div class="topic-cards">
+    <div class="topic-card">
+      <img src="udemy.avif" alt="Budgeting">
+      <h3>Budgeting Basics</h3>
+      <p>Master the fundamentals of personal budgeting</p>
+      <button class="btn btn-primary">Start Learning</button>
+    </div>
+    
+    <div class="topic-card">
+      <img src="investmentplan.avif" alt="Investing">
+      <h3>Investment 101</h3>
+      <p>Learn how to start your investment journey</p>
+      <button class="btn btn-primary">Start Learning</button>
+    </div>
+    
+    <div class="topic-card">
+      <img src="taxes.avif" alt="Taxes">
+      <h3>Tax Planning</h3>
+      <p>Understand tax basics and saving strategies</p>
+      <button class="btn btn-primary">Start Learning</button>
+    </div>
+  </div>
+</section>

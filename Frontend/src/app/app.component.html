@@ -1,4 +1,4 @@
-<div class="d-flex">
+<div *ngIf="isAuthenticated && !isAdmin" class="d-flex">
   <app-sidebar [isCollapsed]="isSidebarCollapsed"></app-sidebar>
   <div class="main-content" [class.sidebar-collapsed]="isSidebarCollapsed">
     <router-outlet></router-outlet>
@@ -6,3 +6,6 @@
 </div>
 
 <!-- <router-outlet /> -->
+<div *ngIf="!isAuthenticated || isAdmin ">
+  <router-outlet></router-outlet>
+</div>

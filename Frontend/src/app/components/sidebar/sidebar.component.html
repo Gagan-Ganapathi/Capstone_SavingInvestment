@@ -1,4 +1,4 @@
-<div class="sidebar bg-dark text-white" [class.collapsed]="isCollapsed">
+<!-- <div class="sidebar bg-dark text-white" [class.collapsed]="isCollapsed">
     <div class="sidebar-header p-3">
       <h4 class="mb-0">Finance Tracker</h4>
       <button class="btn btn-link text-white" (click)="isCollapsed = !isCollapsed">
@@ -15,4 +15,29 @@
         </li>
       </ul>
     </div>
+  </div> -->
+
+
+  <div class="sidebar" [class.collapsed]="isCollapsed">
+    <div class="sidebar-header">
+      <h4>Finance Tracker</h4>
+      <button class="btn btn-link text-white" (click)="isCollapsed = !isCollapsed">
+        <i class="bi" [class.bi-chevron-left]="!isCollapsed" [class.bi-chevron-right]="isCollapsed"></i>
+      </button>
+    </div>
+    <nav>
+      <a
+        *ngFor="let item of menuItems"
+        class="nav-link"
+        [routerLink]="item.path"
+        routerLinkActive="active"
+      >
+        <i [class]="item.icon"></i>
+        <span *ngIf="!isCollapsed">{{ item.label }}</span>
+      </a>
+    </nav>
+    <button class="btn btn-outline-light mt-auto" (click)="logout()">
+      Logout
+    </button>
   </div>
+  
