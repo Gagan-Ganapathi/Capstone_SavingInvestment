@@ -1,122 +1,156 @@
-/* Budget Component Specific Styles */
 :host {
-    --primary-bg: #1a1a1a;
-    --secondary-bg: #2d2d2d;
-    --card-bg: #333333;
-    --text-primary: #ffffff;
-    --text-secondary: #b3b3b3;
-    --border-color: #404040;
-    --accent-color: #4a90e2;
+  --primary-bg: #f8f9fa; /* Bright background */
+  --secondary-bg: #ffffff; /* Light secondary background */
+  --card-bg: #f0f4f9; /* Card background with a light blue tint */
+  --text-primary: #333333; /* Dark text for better contrast */
+  --text-secondary: #555555; /* Slightly muted text */
+  --border-color: #e0e0e0; /* Light border */
+  --accent-color: #007bff; /* Bright blue accent */
+  --hover-bg: #eaf4ff; /* Light blue hover */
+}
+
+.dashboard-title {
+  color: #09131d;
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+  font-weight: 700;
+  letter-spacing: -0.025em;
+}
+
+.card {
+  background-color: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 123, 255, 0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 16px rgba(0, 123, 255, 0.3);
+}
+
+.card-title {
+  color: var(--accent-color);
+  font-size: 1.8rem;
+  font-weight: bold;
+  margin-bottom: 1.5rem;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.section-title {
+  color: var(--text-primary);
+  font-size: 1.4rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+  text-align: left;
+}
+
+.form-group {
+  margin-bottom: 1rem;
+}
+
+.form-label {
+  color: var(--text-secondary);
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 0.85rem;
+}
+
+.form-control,
+.form-select {
+  background-color: var(--secondary-bg);
+  color: var(--text-primary);
+  border: 1px solid var(--border-color);
+  padding: 0.75rem;
+  border-radius: 6px;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.form-control:focus,
+.form-select:focus {
+  border-color: var(--accent-color);
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+.input-group-text {
+  background-color: var(--secondary-bg);
+  color: var(--text-primary);
+  border-color: var(--border-color);
+}
+
+.btn-primary {
+  background-color: var(--accent-color);
+  border: none;
+  padding: 0.75rem 1.5rem;
+  font-weight: bold;
+  color: white;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+}
+
+.btn-primary:hover:not(:disabled) {
+  background-color: #0056b3;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 91, 187, 0.4);
+}
+
+.table-dark {
+  background-color: var(--secondary-bg);
+  color: var(--text-primary);
+}
+
+.table thead th {
+  background-color: var(--accent-color);
+  color: white;
+  border: none;
+  font-weight: bold;
+  text-transform: uppercase;
+  padding: 1rem;
+}
+
+.table tbody tr {
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.table-row-hover:hover {
+  background-color: var(--hover-bg);
+  transform: scale(1.02);
+}
+
+.fade-in {
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+.slide-in {
+  animation: slideIn 0.5s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
   }
-  
-  .card {
-    background-color: var(--card-bg);
-    border: 1px solid var(--border-color);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    transition: transform 0.3s ease;
+  to {
+    opacity: 1;
   }
-  
-  .card-title {
-    color: var(--text-primary);
-    font-size: 1.5rem;
-    font-weight: 600;
-    margin-bottom: 1.5rem;
-    padding-bottom: 0.5rem;
-    border-bottom: 2px solid var(--accent-color);
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
   }
-  
-  .section-title {
-    color: var(--text-primary);
-    font-size: 1.3rem;
-    font-weight: 500;
-    margin-bottom: 1rem;
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
-  
-  .form-group {
-    margin-bottom: 1.5rem;
-  }
-  
-  .form-label {
-    color: var(--text-secondary);
-    font-weight: 500;
-    margin-bottom: 0.5rem;
-    text-transform: uppercase;
-    font-size: 0.875rem;
-    letter-spacing: 0.5px;
-  }
-  
-  .form-control, .form-select {
-    background-color: var(--secondary-bg) !important;
-    color: var(--text-primary) !important;
-    border: 1px solid var(--border-color) !important;
-    padding: 0.625rem;
-  }
-  
-  .form-control:focus, .form-select:focus {
-    border-color: var(--accent-color) !important;
-    box-shadow: 0 0 0 0.2rem rgba(74, 144, 226, 0.25) !important;
-  }
-  
-  .input-group-text {
-    background-color: var(--secondary-bg);
-    color: var(--text-primary);
-    border-color: var(--border-color);
-  }
-  
-  .btn-primary {
-    background-color: var(--accent-color);
-    border: none;
-    padding: 0.625rem 1.25rem;
-    font-weight: 500;
-    transition: all 0.3s ease;
-  }
-  
-  .btn-primary:hover:not(:disabled) {
-    background-color: #357abd;
-    transform: translateY(-1px);
-    box-shadow: 0 2px 8px rgba(74, 144, 226, 0.4);
-  }
-  
-  .table-dark {
-    background-color: transparent;
-    color: var(--text-primary);
-  }
-  
-  .table thead th {
-    background-color: var(--secondary-bg);
-    color: var(--text-primary);
-    border-bottom: 2px solid var(--accent-color);
-    font-weight: 500;
-    text-transform: uppercase;
-    font-size: 0.875rem;
-    letter-spacing: 0.5px;
-    padding: 1rem;
-  }
-  
-  .table-row-hover:hover {
-    background-color: rgba(74, 144, 226, 0.1);
-  }
-  
-  .fade-in {
-    animation: fadeIn 0.5s ease-in;
-  }
-  
-  .slide-in {
-    animation: slideIn 0.5s ease-out;
-  }
-  
-  @keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
-  }
-  
-  @keyframes slideIn {
-    from {
-      opacity: 0;
-      transform: translateY(20px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
+}
+
+.container{
+  display: flex;
+  justify-content: center;
+
+}
+
+

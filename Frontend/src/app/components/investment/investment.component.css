@@ -14,8 +14,8 @@
 }
 
 .dark-dashboard {
-  background-color: #0f172a;
-  background-image: linear-gradient(to bottom right, #0f172a, #1e293b);
+  background-color: #fafafa;
+  background-image: linear-gradient(to bottom right, #ffffff, #ffffff);
   color: #f8fafc;
   padding: 1.5rem;
   min-height: 100vh;
@@ -82,7 +82,7 @@
 
 /* Dashboard Title */
 .dashboard-title {
-  color: #f8fafc;
+  color: #09131d;
   font-size: 2rem;
   margin-bottom: 1.5rem;
   font-weight: 700;
@@ -107,16 +107,16 @@
 
 /* Card Styles */
 .content-card {
-  background-color: #1e293b;
+  background-color: #ffffff;
   border-radius: 12px;
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.2),
               0 2px 4px -1px rgba(0, 0, 0, 0.1);
   margin-bottom: 1.5rem;
-  border: 1px solid #334155;
+  border: 1px solid #a6bee2;
 }
 
 .card-header {
-  background-color: #334155;
+  background-color: #819ec7;
   padding: 1rem 1.5rem;
   border-radius: 12px 12px 0 0;
   border-bottom: 1px solid #475569;
@@ -145,10 +145,10 @@
 
 /* Summary Items */
 .summary-item {
-  background: #334155;
+  background: #2c3542;
   padding: 1.5rem;
   border-radius: 12px;
-  border: 1px solid #475569;
+  border: 1px solid #bfc1c5;
   transition: all 0.3s ease;
 }
 
@@ -158,7 +158,7 @@
 }
 
 .summary-item h6 {
-  color: #cbd5e1;
+  color: #ffffff;
   font-size: 0.875rem;
   font-weight: 600;
   margin-bottom: 0.75rem;
@@ -174,11 +174,11 @@
 }
 
 /* Amount Colors - Brightened for better visibility */
-.amount { color: #34d399; }
-.amount.stock { color: #60a5fa; }
-.amount.mutual { color: #a78bfa; }
-.amount.property { color: #fbbf24; }
-.amount.crypto { color: #f87171; }
+.amount { color: #ffffff; }
+.amount.stock { color: #ffffff; }
+.amount.mutual { color: #ffffff; }
+.amount.property { color: #ffffff; }
+.amount.crypto { color: #f5f5f5; }
 
 /* Trend Indicators */
 .trend {
@@ -213,13 +213,13 @@ th {
 
 td {
   padding: 1rem;
-  color: #e2e8f0;
+  color: #2d3136;
   border-bottom: 1px solid #475569;
   font-size: 0.875rem;
 }
 
 tr:hover td {
-  background-color: #475569;
+  background-color: #728db3;
 }
 
 /* Badge and Status Styles */
@@ -233,6 +233,8 @@ tr:hover td {
 .badge.stocks { background-color: rgba(96, 165, 250, 0.2); color: #60a5fa; }
 .badge.crypto { background-color: rgba(248, 113, 113, 0.2); color: #f87171; }
 .badge.mutual { background-color: rgba(167, 139, 250, 0.2); color: #a78bfa; }
+.badge.property { background-color: rgba(96, 165, 250, 0.2); color: #6a7e96; }
+
 
 .status {
   padding: 0.25rem 0.75rem;
@@ -257,7 +259,7 @@ tr:hover td {
 
 label {
   display: block;
-  color: #f1f5f9;
+  color: #20262c;
   margin-bottom: 0.5rem;
   font-weight: 500;
 }
@@ -282,7 +284,9 @@ label {
 /* Button Styles */
 .btn {
   padding: 0.75rem 1.5rem;
-  background: linear-gradient(45deg, #3b82f6, #60a5fa);
+  /*background: linear-gradient(45deg, #9cb5df, #60a5fa);*/
+  background-color: #475569;
+
   color: #ffffff;
   border: none;
   border-radius: 8px;
@@ -293,7 +297,7 @@ label {
 }
 
 .btn:hover {
-  background: linear-gradient(45deg, #2563eb, #3b82f6);
+  background: linear-gradient(45deg, #8597bd, #7f99c4);
   transform: translateY(-2px);
 }
 

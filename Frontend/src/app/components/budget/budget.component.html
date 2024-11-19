@@ -1,98 +1,121 @@
-<div class="container mt-4 fade-in">
-    <div class="card">
-      <div class="card-body">
-        <h2 class="card-title">Budget Management</h2>
-        
-        <form [formGroup]="budgetForm" (ngSubmit)="onSubmit()" class="slide-in">
-          <div class="row g-3">
-            <div class="col-md-6">
-              <div class="form-group">
-                <label for="category" class="form-label">Category</label>
-                <select id="category" formControlName="category" class="form-select">
-                  <option value="">Select Category</option>
-                  <option *ngFor="let category of categories" [value]="category">
-                    {{category}}
-                  </option>
-                </select>
-                <div class="invalid-feedback" *ngIf="budgetForm.get('category')?.invalid && budgetForm.get('category')?.touched">
-                  Category is required
-                </div>
-              </div>
-            </div>
-            
-            <div class="col-md-6">
-              <div class="form-group">
-                <label for="amount" class="form-label">Amount</label>
-                <div class="input-group">
-                  <span class="input-group-text">$</span>
-                  <input type="number" id="amount" formControlName="amount" class="form-control">
-                </div>
-              </div>
-            </div>
-  
-            <div class="col-md-6">
-              <div class="form-group">
-                <label for="startDate" class="form-label">Start Date</label>
-                <input type="date" id="startDate" formControlName="startDate" class="form-control">
-              </div>
-            </div>
-  
-            <div class="col-md-6">
-              <div class="form-group">
-                <label for="endDate" class="form-label">End Date</label>
-                <input type="date" id="endDate" formControlName="endDate" class="form-control">
-              </div>
-            </div>
-  
-            <div class="col-md-6">
-              <div class="form-check mt-4">
-                <input type="checkbox" id="isRecurring" formControlName="isRecurring" class="form-check-input">
-                <label class="form-check-label" for="isRecurring">Recurring Budget</label>
-              </div>
-            </div>
-  
-            <div class="col-md-6">
-              <div class="form-group">
-                <label for="period" class="form-label">Period</label>
-                <select id="period" formControlName="period" class="form-select">
-                  <option *ngFor="let period of periods" [value]="period">{{period}}</option>
-                </select>
+<div>
+  <h1 class="dashboard-title">Investment Dashboard</h1>
+
+<div class="container p-4  min-h-screen">
+  <!-- Main Budget Form Card -->
+
+  <div class="card bg-dark shadow-xl mb-6">
+    <div class="card-body p-6">
+      <h3 class="text-2xl font-bold text-white mb-6 text-center">Add budget</h3>
+      
+      <form [formGroup]="budgetForm" (ngSubmit)="onSubmit()" class="space-y-6">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <!-- Category Selection -->
+          <div class="card bg-gray-900 p-4 rounded-lg">
+            <div class="form-group">
+              <label for="category" class="block text-gray-300 text-sm font-semibold mb-2">Category</label>
+              <select id="category" formControlName="category" 
+                      class="w-full bg-gray-700 text-gray-100 border border-gray-600 rounded-md p-2 focus:border-purple-500 focus:ring-2 focus:ring-purple-500">
+                <option value="">Select Category</option>
+                <option *ngFor="let category of categories" [value]="category">{{category}}</option>
+              </select>
+              <div class="text-red-400 text-sm mt-1" 
+                   *ngIf="budgetForm.get('category')?.invalid && budgetForm.get('category')?.touched">
+                Category is required
               </div>
             </div>
           </div>
-  
-          <div class="mt-4">
-            <button type="submit" class="btn btn-primary" [disabled]="!budgetForm.valid">
-              Set Budget
-            </button>
+
+          <!-- Amount Input -->
+          <div class="card bg-gray-900 p-4 rounded-lg">
+            <div class="form-group">
+              <label for="amount" class="block text-gray-300 text-sm font-semibold mb-2">Amount</label>
+              <div class="flex">
+                <span class="inline-flex items-center px-3 bg-gray-700 text-gray-300 border border-r-0 border-gray-600 rounded-l-md">₹</span>
+                <input type="number" id="amount" formControlName="amount" 
+                       class="flex-1 bg-gray-700 text-gray-100 border border-gray-600 rounded-r-md p-2 focus:border-purple-500 focus:ring-2 focus:ring-purple-500">
+              </div>
+            </div>
           </div>
-        </form>
-  
-        <div class="mt-5 fade-in">
-          <h3 class="section-title">Current Budgets</h3>
-          <div class="table-responsive">
-            <table class="table table-dark">
-              <thead>
-                <tr>
-                  <th>Category</th>
-                  <th>Amount</th>
-                  <th>Period</th>
-                  <th>Start Date</th>
-                  <th>End Date</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr *ngFor="let budget of budgets" class="table-row-hover">
-                  <td>{{budget.category}}</td>
-                  <td>{{budget.amount | currency}}</td>
-                  <td>{{budget.period}}</td>
-                  <td>{{budget.startDate | date}}</td>
-                  <td>{{budget.endDate | date}}</td>
-                </tr>
-              </tbody>
-            </table>
+
+          <!-- Date Range -->
+          <div class="card bg-gray-900 p-4 rounded-lg">
+            <div class="form-group">
+              <label for="startDate" class="block text-gray-300 text-sm font-semibold mb-2">Start Date</label>
+              <input type="date" id="startDate" formControlName="startDate" 
+                     class="w-full bg-gray-700 text-gray-100 border border-gray-600 rounded-md p-2 focus:border-purple-500 focus:ring-2 focus:ring-purple-500">
+            </div>
+          </div>
+
+          <div class="card bg-gray-900 p-4 rounded-lg">
+            <div class="form-group">
+              <label for="endDate" class="block text-gray-300 text-sm font-semibold mb-2">End Date</label>
+              <input type="date" id="endDate" formControlName="endDate" 
+                     class="w-full bg-gray-700 text-gray-100 border border-gray-600 rounded-md p-2 focus:border-purple-500 focus:ring-2 focus:ring-purple-500">
+            </div>
+          </div>
+
+          <!-- Recurring Options -->
+          <div class="card bg-gray-900 p-4 rounded-lg">
+            <div class="form-group">
+              <div class="flex items-center mb-4">
+                <input type="checkbox" id="isRecurring" formControlName="isRecurring" 
+                       class="w-4 h-4 text-purple-500 bg-gray-700 border-gray-600 rounded focus:ring-purple-500">
+                <label class="ml-2 text-gray-300" for="isRecurring">Recurring Budget</label>
+              </div>
+            </div>
+          </div>
+
+          <div class="card bg-gray-900 p-4 rounded-lg">
+            <div class="form-group">
+              <label for="period" class="block text-gray-300 text-sm font-semibold mb-2">Period</label>
+              <select id="period" formControlName="period" 
+                      class="w-full bg-gray-700 text-gray-100 border border-gray-600 rounded-md p-2 focus:border-purple-500 focus:ring-2 focus:ring-purple-500">
+                <option *ngFor="let period of periods" [value]="period">{{period}}</option>
+              </select>
+            </div>
           </div>
         </div>
+
+        <!-- Submit Button -->
+        <div class="flex justify-center mt-6">
+          <button type="submit" [disabled]="!budgetForm.valid" 
+                  class="px-6 py-3 bg-purple-600 text-white font-semibold rounded-lg shadow-lg hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-opacity-50 transform hover:-translate-y-1 transition-all disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:translate-y-0">
+            Set Budget
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Current Budgets Table Card -->
+  <div class="card bg-dark-subtle shadow-xl">
+    <div class="card-body p-6">
+      <h3 class="text-xl font-bold text-purple-400 mb-6">Current Budgets</h3>
+      <div class="overflow-x-auto">
+        <table class="w-full">
+          <thead>
+            <tr class="bg-dark">
+              <th class="px-4 py-3 text-left text-sm font-semibold text-white">Category</th>
+              <th class="px-4 py-3 text-left text-sm font-semibold text-white">Amount</th>
+              <th class="px-4 py-3 text-left text-sm font-semibold text-white">Period</th>
+              <th class="px-4 py-3 text-left text-sm font-semibold text-white">Start Date</th>
+              <th class="px-4 py-3 text-left text-sm font-semibold text-white">End Date</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let budget of budgets" 
+                class="border-b border-gray-700 hover:bg-gray-700 transition-colors">
+              <td class="px-4 py-3 text-gray-300">{{budget.category}}</td>
+              <td class="px-4 py-3 text-gray-300">{{budget.amount | currency:'INR'}}</td>
+              <td class="px-4 py-3 text-gray-300">{{budget.period}}</td>
+              <td class="px-4 py-3 text-gray-300">{{budget.startDate | date}}</td>
+              <td class="px-4 py-3 text-gray-300">{{budget.endDate | date}}</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     </div>
   </div>
+</div>
+</div>

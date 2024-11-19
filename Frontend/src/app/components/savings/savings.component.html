@@ -1,66 +1,111 @@
 <div class="container-fluid mt-4">
-  <!-- Summary Section -->
-  <div class="row mb-4">
-      <div class="col-md-6">
-          <div class="card">
-              <div class="card-header bg-primary text-white">
-                  Account Summary
-              </div>
-              <div class="card-body">
-                  <div class="row">
-                      <div class="col-6">
-                          <h6>Total Balance</h6>
-                          <p class="h4">{{accountsSummary.totalBalance | currency}}</p>
-                      </div>
-                      <div class="col-6">
-                          <h6>Total Savings</h6>
-                          <p class="h4">{{accountsSummary.totalSavings | currency}}</p>
-                      </div>
-                      <div class="col-12 mt-3">
-                          <h6>Total Accounts</h6>
-                          <p class="h4">{{accountsSummary.accountCount}}</p>
-                      </div>
-                  </div>
-              </div>
-          </div>
-      </div>
-      <div class="col-md-6">
-          <div class="card">
-              <div class="card-header bg-success text-white">
-                  Transaction Summary
-              </div>
-              <div class="card-body">
-                  <div class="row">
-                      <div class="col-6">
-                          <h6>Total Gold</h6>
-                          <p class="h4">{{transactionsSummary.totalGold | currency}}</p>
-                      </div>
-                      <div class="col-6">
-                          <h6>Total Emergency Fund</h6>
-                          <p class="h4">{{transactionsSummary.totalEF | currency}}</p>
-                      </div>
-                      <div class="col-6 mt-3">
-                          <h6>Total Cash</h6>
-                          <p class="h4">{{transactionsSummary.totalCash | currency}}</p>
-                      </div>
-                      <div class="col-6 mt-3">
-                          <h6>Transaction Count</h6>
-                          <p class="h4">{{transactionsSummary.transactionCount}}</p>
-                      </div>
-                  </div>
-              </div>
-          </div>
-      </div>
-  </div>
+    <!-- Summary Section -->
+    <h1 class="dashboard-title">Savings Dashboard</h1>
 
-
-
-  <div class="container-fluid mt-4">
-    <!-- Create Account Section -->
     <div class="row mb-4">
         <div class="col-md-6">
             <div class="card">
-                <div class="card-header bg-primary text-white">
+                <div class="card-header  text-white">
+                    Account Summary
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-6">
+                            <h6>Total Balance</h6>
+                            <p class="h4">{{accountsSummary.totalBalance | currency:'INR'}}</p>
+                        </div>
+                        <div class="col-6">
+                            <h6>Total Savings</h6>
+                            <p class="h4">{{accountsSummary.totalSavings | currency:'INR'}}</p>
+                        </div>
+                        <div class="col-12 mt-3">
+                            <h6>Total Accounts</h6>
+                            <p class="h4">{{accountsSummary.accountCount}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header  text-white">
+                    Transaction Summary
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-6">
+                            <h6>Total Gold</h6>
+                            <p class="h4">{{transactionsSummary.totalGold | currency:'INR'}}</p>
+                        </div>
+                        <div class="col-6">
+                            <h6>Total Emergency Fund</h6>
+                            <p class="h4">{{transactionsSummary.totalEF | currency:'INR'}}</p>
+                        </div>
+                        <div class="col-6 mt-3">
+                            <h6>Total Cash</h6>
+                            <p class="h4">{{transactionsSummary.totalCash | currency:'INR'}}</p>
+                        </div>
+                        <div class="col-6 mt-3">
+                            <h6>Transaction Count</h6>
+                            <p class="h4">{{transactionsSummary.transactionCount}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Savings Accounts Section -->
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header  text-white">
+                    Savings Accounts
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Account ID</th>
+                                    <th>Balance</th>
+                                    <th>Created At</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let account of savingsAccounts">
+                                    <td>{{account.id}}</td>
+                                    <td>{{account.balance | currency:'INR'}}</td>
+                                    <td>{{account.createdAt | date}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Chart and Create Account Section -->
+    <div class="row mb-4">
+        <!-- Pie Chart -->
+        <div class="col-md-6 mb-4">
+            <div class="card chart-card">
+                <div class="card-header  text-white">
+                    Savings Distribution
+                </div>
+                <div class="card-body chart-container d-flex justify-content-center align-items-center">
+                    <div style="width: 100%; max-width: 400px;">
+                        <canvas id="savingsChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Create Account Section -->
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header  text-white">
                     Create New Account
                 </div>
                 <div class="card-body">
@@ -77,9 +122,12 @@
                 </div>
             </div>
         </div>
+    </div>
 
+    <!-- Add Transaction and Transaction History Section -->
+    <div class="row">
         <!-- Add Transaction Section -->
-        <div class="col-md-6">
+        <div class="col-md-6 mb-4">
             <div class="card">
                 <div class="card-header bg-success text-white">
                     Add Savings Transaction
@@ -101,44 +149,11 @@
                 </div>
             </div>
         </div>
-    </div>
 
-    <!-- Savings Accounts Section -->
-    <div class="row mb-4">
-        <div class="col-12">
+        <!-- Transaction History Section -->
+        <div class="col-md-6">
             <div class="card">
-                <div class="card-header bg-info text-white">
-                    Savings Accounts
-                </div>
-                <div class="card-body">
-                    <div class="table-responsive">
-                        <table class="table table-striped">
-                            <thead>
-                                <tr>
-                                    <th>Account ID</th>
-                                    <th>Balance</th>
-                                    <th>Created At</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr *ngFor="let account of savingsAccounts">
-                                    <td>{{account.id}}</td>
-                                    <td>{{account.balance | currency}}</td>
-                                    <td>{{account.createdAt | date}}</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Transaction History Section -->
-    <div class="row">
-        <div class="col-12">
-            <div class="card">
-                <div class="card-header bg-warning text-dark">
+                <div class="card-header bg-success text-white">
                     Transaction History
                 </div>
                 <div class="card-body">
@@ -155,7 +170,7 @@
                                 <tr *ngFor="let transaction of transactions">
                                     <td>{{transaction.transactionDate | date}}</td>
                                     <td>{{transaction.type}}</td>
-                                    <td>{{transaction.amount | currency}}</td>
+                                    <td>{{transaction.amount | currency:'INR'}}</td>
                                 </tr>
                             </tbody>
                         </table>

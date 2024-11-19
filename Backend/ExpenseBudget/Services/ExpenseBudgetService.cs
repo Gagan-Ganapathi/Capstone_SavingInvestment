@@ -54,6 +54,18 @@ namespace ExpenseBudget.Services
 
             var budgetAmount = budget?.Amount ?? 0;
             var remainingBudget = budgetAmount - totalSpent;
+            
+            if(totalSpent > budgetAmount)
+            { var rem = remainingBudget * -1;
+                string emailsubject = "Regarding Overspending";
+                string username = userId;
+                string emailmessage = "Dear " + username + "\n" +
+                    "you have overspend Rs." + rem + " this month in " + category + " category. Dont Repeat this from next month to achieve yourt fianancial goal!!";
+
+                EmailSender emailSender = new EmailSender();
+                emailSender.SendEmail(emailsubject,username, username, emailmessage).Wait();
+
+            }
             var spendingPercentage = budgetAmount > 0 ? (totalSpent / budgetAmount) * 100 : 0;
 
             return new ExpenseSummaryDTO

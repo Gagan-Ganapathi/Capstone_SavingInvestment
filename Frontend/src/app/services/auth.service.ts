@@ -7,7 +7,7 @@ import { LoginRequest, LoginResponse, RegistrationRequest, User, Response } from
   providedIn: 'root'
 })
 export class AuthService {
-  private apiUrl = 'http://localhost:7724/api/Auth';
+  private apiUrl = 'https://localhost:7724/api/Auth';
   private userSubject = new BehaviorSubject<User | null>(null);
   private isAuthenticated = false; // Default is not authenticated
   private isAdmin = false; 

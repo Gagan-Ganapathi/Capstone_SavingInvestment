@@ -1,1 +1,45 @@
-<p>profile works!</p>
+<div class="user-profile">
+    <h2>User Profile</h2>
+    <form (ngSubmit)="onSubmit()" #profileForm="ngForm">
+      <div class="form-group">
+        <label for="name">Name</label>
+        <input
+          type="text"
+          id="name"
+          name="name"
+          class="form-control"
+          [(ngModel)]="user.name"
+          required
+        />
+      </div>
+  
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input
+          type="email"
+          id="email"
+          name="email"
+          class="form-control"
+          [(ngModel)]="user.email"
+          required
+        />
+      </div>
+  
+      <div class="form-group">
+        <label for="phoneNumber">Phone Number</label>
+        <input
+          type="text"
+          id="phoneNumber"
+          name="phoneNumber"
+          class="form-control"
+          [(ngModel)]="user.phoneNumber"
+          required
+        />
+      </div>
+  
+      <button type="submit" class="btn btn-primary" [disabled]="profileForm.invalid">
+        Update Profile
+      </button>
+    </form>
+  </div>
+  

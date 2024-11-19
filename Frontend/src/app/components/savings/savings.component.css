@@ -1,33 +1,405 @@
-.card {
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-  margin-bottom: 20px;
+/* /* :root {
+  --background-dark: #0a0a1a;
+  --background-darker: #060613;
+  --primary-color: #4a148c;
+  --secondary-color: #6a2b8d;
+  --accent-color: #9c27b0;
+  --text-primary: #e0e0e0;
+  --text-secondary: #a0a0a0;
+  --card-background: #1a1a2e;
+  --border-color: #4a148c;
 }
 
-.card-header {
-  font-weight: 500;
-}
-
-.stats-box {
-  padding: 15px;
-  background-color: #f8f9fa;
-  border-radius: 8px;
-  text-align: center;
-  margin-bottom: 15px;
-}
-
-.stats-box h5 {
-  color: #495057;
-  margin-bottom: 10px;
-}
-
-.stats-box p {
-  font-size: 1.2rem;
-  font-weight: 500;
+body {
+  background-color: var(--background-darker);
+  color: var(--text-primary);
+  font-family: 'Arial', sans-serif;
+  line-height: 1.6;
   margin: 0;
-  color: #212529;
+  padding: 0;
 }
 
-#investmentChart {
-  width: 100% !important;
-  height: 300px !important;
+.savings-container {
+  background-color: var(--background-dark);
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  box-shadow: 0 0 30px rgba(0,0,0,0.5);
+}
+
+.summary-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.gradient-card {
+  background: linear-gradient(135deg, var(--background-darker), var(--card-background));
+  border-radius: 15px;
+  padding: 1.5rem;
+  border: 1px solid var(--border-color);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+}
+
+.action-grid .card {
+  background-color: var(--card-background);
+  border: 1px solid var(--border-color);
+}
+
+.table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+}
+
+.table thead {
+  background-color: var(--primary-color);
+}
+
+.table tbody tr {
+  background-color: var(--background-darker);
+}
+
+.table tbody tr:nth-child(even) {
+  background-color: var(--card-background);
+}
+
+.action-grid .card .form-group .form-control {
+  background-color: var(--background-darker);
+  color: var(--text-primary);
+  border: 1px solid var(--border-color);
+}
+
+.action-grid .card .btn {
+  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+}
+
+Additional Dark Theme Enhancements 
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--accent-color) var(--background-darker);
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--background-darker);
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--accent-color);
+  border-radius: 20px;
+} */
+
+/*.card {   box-shadow: 0 2px 4px rgba(0,0,0,0.1);  
+   margin-bottom: 20px; }  
+
+.card-header {  
+   font-weight: 500;
+   } 
+
+ .stats-box {   
+  padding: 15px; 
+    background-color: #f8f9fa;   
+    border-radius: 8px;  
+     text-align: center;  
+      margin-bottom: 15px; } 
+    
+    .stats-box h5 {   
+      color: #495057;  
+       margin-bottom: 10px;
+       } 
+
+     .stats-box p {   
+      font-size: 1.2rem;  
+       font-weight: 500;  
+        margin: 0;  
+         color: #212529;
+         }
+
+
+   #investmentChart {  
+     width: 100% !important;  
+     height: 300px !important; } */
+
+/* 
+     :root {
+      --background-dark: #0a0a1a;
+      --background-light: #ffffff;
+      --primary-color: #6c63ff; /* New highlight color */
+     /* --secondary-color: #3f3d56;
+      --accent-color: #ff6584;
+      --text-primary: #ffffff;
+      --text-secondary: #a0a0a0;
+      --card-background: var(--background-light);
+      --card-border: #dcdcdc;
+      --hover-shadow: rgba(0, 0, 0, 0.15);
+    }
+    
+    body {
+      background-color: var(--background-dark);
+      color: var(--text-primary);
+      font-family: 'Arial', sans-serif;
+      margin: 0;
+      padding: 0;
+      line-height: 1.6;
+    }
+    
+    .card {
+      background-color: var(--card-background);
+      border: 1px solid var(--card-border);
+      border-radius: 10px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 20px var(--hover-shadow);
+    }
+    
+    .card-header {
+      background-color: var(--primary-color);
+      color: var(--text-primary);
+      font-weight: bold;
+      text-transform: uppercase;
+      padding: 0.75rem 1rem;
+    }
+    
+    .card-body {
+      padding: 1.5rem;
+    }
+    
+    .btn {
+      background-color: var(--primary-color);
+      border: none;
+      color: var(--text-primary);
+      padding: 0.5rem 1rem;
+      border-radius: 4px;
+      transition: background-color 0.3s ease;
+    }
+    
+    .btn:hover {
+      background-color: var(--accent-color);
+    }
+    
+    .table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0;
+    }
+    
+    .table thead {
+      background-color: var(--primary-color);
+      color: var(--text-primary);
+    }
+    
+    .table tbody tr {
+      transition: background-color 0.3s ease;
+    }
+    
+    .table tbody tr:hover {
+      background-color: var(--hover-shadow);
+    }
+    
+    .stats-box {
+      padding: 15px;
+      background-color: var(--card-background);
+      border-radius: 10px;
+      text-align: center;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    
+    .stats-box:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 20px var(--hover-shadow);
+    }
+    
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    .card, .stats-box, .table tbody tr {
+      animation: fadeInUp 0.5s ease;
+    }
+    
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    
+    ::-webkit-scrollbar-track {
+      background: var(--background-dark);
+    }
+    
+    ::-webkit-scrollbar-thumb {
+      background-color: var(--accent-color);
+      border-radius: 10px;
+    } */
+    
+
+    :root {
+      --background-dark: #0a0a1a;
+      --background-light: #ffffff;
+      --primary-color: #6c63ff; /* New highlight color */
+      --secondary-color: #3f3d56;
+      --accent-color: #ff6584;
+      --text-primary: #ffffff;
+      --text-secondary: #a0a0a0;
+      --card-background-dark: #1a1a2e; /* Dark card background */
+      --card-background-light: #ffffff; /* Light card background */
+      --card-border: #444444;
+      --hover-shadow: rgba(0, 0, 0, 0.15);
+    }
+    
+    body {
+      background-color: var(--background-dark);
+      color: var(--text-primary);
+      font-family: 'Arial', sans-serif;
+      margin: 0;
+      padding: 0;
+      line-height: 1.6;
+    }
+    
+    .card {
+      background-color:#1a1a2e ; /* Dark background for cards */
+      border: 1px solid var(--card-border);
+      border-radius: 10px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    
+    .card-header {
+      background-color:#198754;
+      color: white;
+      font-weight: bold;
+      text-transform: uppercase;
+      padding: 0.75rem 1rem;
+    }
+    
+    .card-body {
+      padding: 1.5rem;
+    }
+    
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 20px var(--hover-shadow);
+    }
+    
+    .card-header,
+    .card-body,
+    .table
+     {
+      color: #ffffff;
+    }
+    
+    .btn {
+      background-color: rgb(126, 124, 223);
+      border: none;
+      color: var(--text-primary);
+      padding: 0.5rem 1rem;
+      border-radius: 4px;
+      transition: background-color 0.3s ease;
+    }
+    
+    .btn:hover {
+      background-color: var(--accent-color);
+    }
+    
+    .table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0;
+    }
+    
+    .table thead {
+      background-color: var(--primary-color);
+      color: var(--text-primary);
+    }
+    
+    .table tbody tr {
+      transition: background-color 0.3s ease;
+    }
+    
+    .table tbody tr:hover {
+      background-color: var(--hover-shadow);
+    }
+    
+    .stats-box {
+      padding: 15px;
+      background-color: var(--card-background-dark); /* Dark background for stats-box */
+      border-radius: 10px;
+      text-align: center;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    
+    .stats-box:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 20px var(--hover-shadow);
+    }
+    
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    .card, .stats-box, .table tbody tr {
+      animation: fadeInUp 0.5s ease;
+    }
+    
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    
+    ::-webkit-scrollbar-track {
+      background: var(--background-dark);
+    }
+    
+    ::-webkit-scrollbar-thumb {
+      background-color: var(--accent-color);
+      border-radius: 10px;
+    }
+    
+
+    .chart-card {
+      height: 100%;
+  }
+  
+  .chart-container {
+      min-height: 400px;
+      padding: 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+  }
+  
+  #savingsChart {
+      max-width: 100%;
+      max-height: 100%;
+      margin: auto;
+  }
+
+.dashboard-title {
+  color: #09131d;
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+  font-weight: 700;
+  letter-spacing: -0.025em;
 }

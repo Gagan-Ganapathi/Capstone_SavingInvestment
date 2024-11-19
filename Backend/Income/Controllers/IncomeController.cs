@@ -7,6 +7,7 @@ using System.Net.Http;
 using System.Text.Json;
 using System.Text;
 using IncomeMicroservice.Utils;
+using System;
 
 namespace IncomeMicroservice.Controllers
 {
@@ -62,6 +63,7 @@ namespace IncomeMicroservice.Controllers
                 "/api/expensebudget/income";
 
             var monthlyIncome = await CalculateMonthlyIncome(income.UserId);
+            //console.log(monthlyIncome);
             var incomeUpdateDto = new MonthlyIncomeDto1
             {
                 UserId = income.UserId,

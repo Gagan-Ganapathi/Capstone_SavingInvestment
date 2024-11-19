@@ -230,7 +230,9 @@ export class InvestmentComponent implements OnInit {
                           backgroundColor: [
                               '#FF6384',
                               '#36A2EB',
-                              '#4BC0C0'
+                              '#4BC0C0',
+                              '#4CAF50',
+                            
                           ]
                       }]
                   },

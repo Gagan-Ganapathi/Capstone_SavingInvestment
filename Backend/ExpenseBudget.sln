@@ -13,6 +13,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Savingsmicro", "D:\.netbatc
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AuthMicroservice", "D:\.netbatch\proj5myauth\GrowthPath.AuthAPI\AuthMicroservice.csproj", "{DF50650D-14AA-4855-9D07-6571CF967F03}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SavingsInvestmentMicroservice", "SavingsInvestmentMicroservice\SavingsInvestmentMicroservice.csproj", "{24E91D46-BCB6-4363-A148-BF3C87622258}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyAuthMicroservice", "MyAuthMicroservice\MyAuthMicroservice.csproj", "{CA3685BC-302B-421F-8D1C-6D2E80E7A457}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +43,14 @@ Global
 		{DF50650D-14AA-4855-9D07-6571CF967F03}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DF50650D-14AA-4855-9D07-6571CF967F03}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DF50650D-14AA-4855-9D07-6571CF967F03}.Release|Any CPU.Build.0 = Release|Any CPU
+		{24E91D46-BCB6-4363-A148-BF3C87622258}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{24E91D46-BCB6-4363-A148-BF3C87622258}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{24E91D46-BCB6-4363-A148-BF3C87622258}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{24E91D46-BCB6-4363-A148-BF3C87622258}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CA3685BC-302B-421F-8D1C-6D2E80E7A457}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CA3685BC-302B-421F-8D1C-6D2E80E7A457}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CA3685BC-302B-421F-8D1C-6D2E80E7A457}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CA3685BC-302B-421F-8D1C-6D2E80E7A457}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

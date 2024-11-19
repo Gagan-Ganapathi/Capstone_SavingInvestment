@@ -31,6 +31,8 @@ export class LoginComponent {
         next: (response) => {
           if (response.isSuccess) {
              localStorage.setItem('userid', response.result.user.email);
+             localStorage.setItem('id', response.result.user.id);
+
              localStorage.setItem('token', response.result.token);
              localStorage.setItem('role', response.result.role);
 
