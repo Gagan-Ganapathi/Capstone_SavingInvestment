@@ -1,86 +1,57 @@
-/* .card {
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    margin-bottom: 1rem;
-  }
-  
-  .table th, 
-  .table td {
-    vertical-align: middle;
-  }
-  
-  .btn-group {
-    display: flex;
-    gap: 5px;
-  }
-  
-  .form-group {
-    margin-bottom: 1rem;
-  }
-  
-  .total-income-card {
-    background-color: #f8f9fa;
-    border-left: 4px solid #28a745;
-  }
-  
-  .action-buttons {
-    display: flex;
-    gap: 10px;
-  }
-  
-  .table-responsive {
-    overflow-x: auto;
-  }
-  
-  .income-form {
-    background-color: white;
-    padding: 20px;
-    border-radius: 5px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  }
-  
-  .form-buttons {
-    display: flex;
-    gap: 10px;
-    margin-top: 20px;
-  }
-  
-  .income-history {
-    margin-top: 2rem;
-  }
-  
-  .income-card {
-    transition: transform 0.2s ease;
-  }
-  
-  .income-card:hover {
-    transform: translateY(-2px);
-  }
-  
-  /* Custom utility classes */
-  /*.text-success {
-    color: #28a745;
-  }
-  
-  .bg-dark {
-    background-color: #343a40;
-  }
-  
-  .text-white {
-    color: white;
-  } 
 
-   */
 
    /* General Styling */
 
 /* Main container to align beside sidebar */
+/* Main container when sidebar and content are displayed */
+.main-layout {
+  display: flex;
+  height: 100vh;
+  width: 100%;
+  overflow: hidden; /* Prevents overflow of child elements */
+}
+
+/* Sidebar styling */
+app-sidebar {
+  width: 240px; /* Default sidebar width */
+  transition: width 0.3s ease-in-out;
+}
+
+app-sidebar.sidebar-collapsed {
+  width: 60px; /* Collapsed sidebar width */
+}
+
+/* Main content area */
+.main-content {
+  flex: 1;
+  padding: 20px;
+  background-color: #f5f5f5;
+  transition: margin-left 0.3s ease-in-out;
+  overflow: hidden; /* Prevents unwanted scrolling */
+}
+
+.main-content.sidebar-collapsed {
+  margin-left: 60px;
+}
+
+/* Router-outlet content styling for centering */
+router-outlet {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
 .income-container {
   margin-left: 150px; /* Adjust this based on your sidebar width */
   padding: 50px;
   background-color: #fdfeff;
-  height: 100vh;
-  overflow-y: auto;
+  min-height: 100vh; /* Allow content to expand */
   box-sizing: border-box;
+  display: flex;
+  flex-direction: column; /* Stack content vertically */
+  align-items: center; /* Center align items */
+  overflow: hidden; /* Prevent vertical scroll */
 }
 
 /* Header Styling */
@@ -105,6 +76,8 @@
   margin-bottom: 1.5rem;
   border-radius: 8px;
   animation: fadeIn 0.8s ease-in-out;
+  width: 100%; /* Expand card width */
+  max-width: 600px; /* Limit max width */
 }
 
 .total-income {
@@ -117,6 +90,8 @@
 .action-bar {
   text-align: right;
   margin-bottom: 1.5rem;
+  width: 100%;
+  max-width: 600px; /* Align with card width */
 }
 
 .toggle-form-btn {
@@ -138,6 +113,7 @@
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   padding: 20px;
 }
+
 .form-actions {
   margin-top: 5px;
 }
@@ -152,6 +128,8 @@
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   padding: 20px;
+  width: 100%;
+  max-width: 600px; /* Align with other components */
 }
 
 .table th {
@@ -184,4 +162,11 @@
     transform: translateY(0);
     opacity: 1;
   }
+}
+
+/* Additional body settings to prevent scroll */
+body {
+  margin: 0;
+  padding: 0;
+  overflow: hidden; /* Prevent scroll */
 }
