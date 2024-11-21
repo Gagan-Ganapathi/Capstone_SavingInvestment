@@ -85,13 +85,6 @@ namespace ExpenseBudget.Controllers
             return Ok(summary);
         }
 
-        //[HttpPost("income")]
-        //public async Task<OkResult> UpdateIncome(MonthlyIncomeDto incomeDto)
-        //{
-        //    await _service.UpdateMonthlyIncome(
-        //        incomeDto.UserId,
-        //        incomeDto.TotalMonthlyIncome);
-        //    return Ok();
-        //}
+      
     }
 }
