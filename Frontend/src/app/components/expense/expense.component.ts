@@ -3,6 +3,8 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { ExpenseBudgetService } from '../../services/expense-budget.service';
 import { Expense, ExpenseSummary } from '../../models/expense.model';
 import { CommonModule } from '@angular/common';
+import { ToastrService } from 'ngx-toastr';
+
 
 @Component({
   selector: 'app-expense',
@@ -21,7 +23,10 @@ export class ExpenseComponent implements OnInit {
  
   constructor(
     private fb: FormBuilder,
-    private service: ExpenseBudgetService
+    private service: ExpenseBudgetService,
+    private toastr: ToastrService
+
+
   ) {
     this.expenseForm = this.fb.group({
       category: ['', Validators.required],
@@ -72,8 +77,9 @@ export class ExpenseComponent implements OnInit {
           this.loadExpenses();
           this.loadSummary();
           this.expenseForm.reset();
+          this.toastr.success('Expense added successfully', 'Expense Added')
         },
-        (error) => console.error('Error adding expense:', error)
+        (error) => this.toastr.error('Expense cannot be greater than budget', 'Error')
       );
     }
   }

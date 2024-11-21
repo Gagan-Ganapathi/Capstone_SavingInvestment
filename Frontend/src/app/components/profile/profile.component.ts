@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { ToastrService } from 'ngx-toastr';
+
 
 @Component({
   selector: 'appprofile',
@@ -19,7 +21,8 @@ export class ProfileComponent implements OnInit {
     phoneNumber: '',
   };
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient,private toastr: ToastrService
+    ) {}
 
   ngOnInit() {
     this.getUserDetails();
@@ -55,11 +58,11 @@ export class ProfileComponent implements OnInit {
       .put(`https://localhost:7724/api/auth/user/${userId}`, this.user)
       .subscribe({
         next: () => {
-          alert('Profile updated successfully!');
+          this.toastr.success('Profile updated successfully!');
         },
         error: (error) => {
           console.error('Error updating profile:', error);
-          alert('Failed to update profile. Please try again later.');
+          this.toastr.error('Failed to update profile. Please try again later.');
         },
       });
   }

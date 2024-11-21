@@ -7,7 +7,7 @@ namespace ExpenseBudget.Services
     {
         public async Task SendEmail( string subject,string toEmail, string username,string message)
         {
-            var apiKey = "";
+            var apiKey = "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";
             var client = new SendGridClient(apiKey);
             var from = new EmailAddress("gagan.g196016@gmail.com", "Personal Finance Tracker");
          

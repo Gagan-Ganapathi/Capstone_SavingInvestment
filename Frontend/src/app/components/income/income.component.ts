@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { IncomeService } from '../../services/income.service';
 import { Income, IncomeDto } from '../../models/income.model';
+import { ToastrService } from 'ngx-toastr';
+
 
 @Component({
   selector: 'app-income',
@@ -27,7 +29,9 @@ export class IncomeComponent implements OnInit {
 
   constructor(
     private incomeService: IncomeService,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private toastr: ToastrService
+
   ) {
     this.incomeForm = this.fb.group({
       amount: ['', [Validators.required, Validators.min(0)]],
@@ -82,21 +86,23 @@ export class IncomeComponent implements OnInit {
         userId: userid, // Replace with actual user ID
         ...this.incomeForm.value
       };
-
+     
       if (this.isEditing && this.editingIncomeId) {
         this.incomeService.updateIncome(this.editingIncomeId, incomeData).subscribe(
           () => this.handleSubmitSuccess(),
-          (error) => console.error('Error updating income:', error)
+          (error) => console.error('Error updating income:', error),
         );
+        this.toastr.success('New Income created successfully!', 'Income Created')
+
       } else {
         this.incomeService.createIncome(incomeData).subscribe(
           () => this.handleSubmitSuccess(),
-          (error) => console.error('Error creating income:', error)
+          (error) => this.toastr.error('Error creating income', 'Error')
+
         );
       }
     } else {
       console.error('User ID is not available in localStorage.');
-      // Handle the case when userId is null (e.g., redirect to login or show an error message)
     }
     }
   }

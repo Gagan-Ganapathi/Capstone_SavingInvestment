@@ -67,14 +67,14 @@
                         <table class="table table-striped">
                             <thead>
                                 <tr>
-                                    <th>Account ID</th>
+                                    <!-- <th>Account ID</th> -->
                                     <th>Balance</th>
                                     <th>Created At</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr *ngFor="let account of savingsAccounts">
-                                    <td>{{account.id}}</td>
+                                    <!-- <td>{{account.id}}</td> -->
                                     <td>{{account.balance | currency:'INR'}}</td>
                                     <td>{{account.createdAt | date}}</td>
                                 </tr>

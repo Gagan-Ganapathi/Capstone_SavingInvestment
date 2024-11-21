@@ -27,7 +27,7 @@ export class DashboardComponent implements OnInit {
     this.loading = true;
     this.error = null;
 
-    this.userService.getEmployees().subscribe({
+    this.userService.getAllUsers().subscribe({
       next: (response) => {
         if (response.isSuccess) {
           this.users = response.result;

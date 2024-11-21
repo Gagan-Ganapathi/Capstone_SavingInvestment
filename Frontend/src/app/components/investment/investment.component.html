@@ -46,7 +46,7 @@
               <table>
                 <thead>
                   <tr>
-                    <th>Account ID</th>
+                    <!-- <th>Account ID</th> -->
                     <th>Balance</th>
                     <th>Created At</th>
                   </tr>
@@ -54,7 +54,7 @@
                 <tbody>
                   <tr *ngFor="let account of investmentAccounts; let i = index" 
                       class="animate-slide-right">
-                    <td><span class="account-id">{{account.id}}</span></td>
+                    <!-- <td><span class="account-id">{{account.id}}</span></td> -->
                     <td><span class="balance">{{account.balance | currency:'INR'}}</span></td>
                     <td>{{account.createdAt | date}}</td>
                   </tr>

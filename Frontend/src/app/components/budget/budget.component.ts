@@ -3,6 +3,8 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { ExpenseBudgetService } from '../../services/expense-budget.service';
 import { Budget } from '../../models/budget.model';
 import { CommonModule } from '@angular/common';
+import { ToastrService } from 'ngx-toastr';
+
 
 @Component({
   selector: 'app-budget',
@@ -20,7 +22,9 @@ export class BudgetComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private service: ExpenseBudgetService
+    private service: ExpenseBudgetService,
+    private toastr: ToastrService
+
   ) {
     this.budgetForm = this.fb.group({
       category: ['', Validators.required],
@@ -57,9 +61,13 @@ export class BudgetComponent implements OnInit {
         () => {
           this.loadBudgets();
           this.budgetForm.reset();
+          this.toastr.success('Budget added successfully','Budget Added');
+
         },
-        (error) => console.error('Error setting budget:', error)
+        (error) =>  this.toastr.error('Budget cannot exceed this months income', 'Error')
+        //alert('Budget cannot exceed this months income')
       );
     }
+   
   }
 }

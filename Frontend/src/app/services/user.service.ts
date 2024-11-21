@@ -59,7 +59,7 @@ export interface ResponseDto<T> {
   providedIn: 'root'
 })
 export class UserService {
-  private baseUrl = 'http://localhost:7724/api/Auth/users'; // Adjust based on your API URL
+  private baseUrl = 'https://localhost:7724/api/Auth'; // Adjust based on your API URL
 
   constructor(private http: HttpClient) { }
 
