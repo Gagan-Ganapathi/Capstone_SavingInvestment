@@ -52,7 +52,7 @@ namespace Savingsmicro.Controllers
             }
             var account = await _accountService.CreateAccountAsync(userId, accountType);
             var accountDto = _mapper.Map<accountdto>(account);
-            return Ok(accountDto); // return clean DTO response
+            return Ok(accountDto); 
         }
 
       
@@ -61,25 +61,9 @@ namespace Savingsmicro.Controllers
         [ProducesResponseType(typeof(List<accountdto>), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ErrorResponse), StatusCodes.Status404NotFound)]
         public async Task<ActionResult<List<accountdto>>> GetUserAccounts(string userId) { 
-        //{
-        //    try
-        //    {
-        //        var accounts = await _accountService.GetUserAccountsAsync(userId);
-        //        var accountDtos = _mapper.Map<List<accountdto>>(accounts);
-        //        return Ok(accountDtos);
-        //    }
-        //    catch (NotFoundException ex)
-        //    {
-        //        _logger.LogWarning(ex, "User accounts not found for userId: {UserId}", userId);
-        //        return NotFound(new ErrorResponse
-        //        {
-        //            StatusCode = StatusCodes.Status404NotFound,
-        //            Message = ex.Message
-        //        });
-        //    }
-
+        
              try
-    {
+       {
         var accounts = await _accountService.GetUserAccountsAsync(userId);
         if (accounts == null || !accounts.Any())
         {
@@ -89,17 +73,17 @@ namespace Savingsmicro.Controllers
                 Message = "No accounts found for this user."
             });
         }
-var accountDtos = _mapper.Map<List<accountdto>>(accounts);
-return Ok(accountDtos); // return clean DTO list
+          var accountDtos = _mapper.Map<List<accountdto>>(accounts);
+          return Ok(accountDtos); // return clean DTO list
     }
-    catch (NotFoundException ex)
-    {
+        catch (NotFoundException ex)
+      {
         _logger.LogWarning(ex, "User accounts not found for userId: {UserId}", userId);
-return NotFound(new ErrorResponse
-{
-    StatusCode = StatusCodes.Status404NotFound,
-    Message = ex.Message
-});
+         return NotFound(new ErrorResponse
+        {
+         StatusCode = StatusCodes.Status404NotFound,
+         Message = ex.Message
+      });
     }
 
         }
